@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="pokemon"
+            type="com.example.pokemonapp.data.datasource.database.entities.PokemonEntity" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E3E0E0"
+        tools:context=".ui.detailFragment.DetailFragment">
+
+        <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_back"
+        app:backgroundTint="@color/purple_700"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />-->
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#AF9EC7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:navigationIcon="@drawable/ic_back"
+                app:title="@string/app_detail" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_normal"
+            loadimage="@{pokemon.photoURL}"
+            android:layout_width="@dimen/defaul_view"
+            android:layout_height="@dimen/defaul_view"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/img_shiny"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_shiny"
+            loadimage="@{pokemon.photoUrlShiny}"
+            android:layout_width="@dimen/defaul_view"
+            android:layout_height="@dimen/defaul_view"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="@+id/img_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_normal"
+            app:layout_constraintTop_toTopOf="@+id/img_normal" />
+
+
+        <TextView
+            android:id="@+id/tv_name"
+            changeText="@{pokemon.name}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            app:layout_constraintEnd_toEndOf="@id/img_shiny"
+            app:layout_constraintStart_toStartOf="@id/img_normal"
+            app:layout_constraintTop_toBottomOf="@id/img_shiny"
+            tools:text="Pokemon" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

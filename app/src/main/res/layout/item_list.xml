@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="pokemon"
+            type="com.example.pokemonapp.data.datasource.database.entities.PokemonEntity" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/container"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardElevation="@dimen/cardview_default_elevation_"
+        android:layout_width="match_parent"
+        app:cardCornerRadius="@dimen/cardview_default_elevation_"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/min_margin"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/min_margin">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_photo"
+                loadimageCircle="@{pokemon.photoURL}"
+                android:layout_width="@dimen/defaul_c_v"
+                android:layout_height="@dimen/defaul_c_v"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                android:src="@mipmap/ic_launcher_round"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp"
+                android:layout_marginBottom="@dimen/default_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="0dp"
+                changeText="@{pokemon.name}"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintBottom_toBottomOf="@id/img_photo"
+                app:layout_constraintStart_toEndOf="@id/img_photo"
+                app:layout_constraintTop_toTopOf="@id/img_photo"
+                tools:text="Pokemon" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btn_favorite"
+                android:layout_width="@dimen/btn_favorite_shape"
+                android:layout_height="@dimen/btn_favorite_shape"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:clickable="true"
+                android:focusable="true"
+                loadImagefab="@{pokemon.favorite}"
+                android:src="@drawable/ic_favorite_false"
+                app:layout_constraintBottom_toBottomOf="@id/tv_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
