@@ -6,9 +6,11 @@ import java.net.UnknownHostException
 object Constats {
     const val EXT_PNG = ".png"
     const val API_URL = "https://pokeapi.co/api/v2/pokemon-form/"
-    const val URL_PHOTO_NORMAL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
+    const val URL_PHOTO_NORMAL = "https://www.serebii.net/pokemongo/pokemon/"
+    const val URL_PHOTO_SHINY ="https://www.serebii.net/pokemongo/pokemon/shiny/"
+    /* const val URL_PHOTO_NORMAL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
     const val URL_PHOTO_SHINY ="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/"
-    const val TABLE_NAME = "Pokemon"
+    */const val TABLE_NAME = "Pokemon"
     const val DATABASE_NAME = "Pokemon_database"
     private const val URL_CONECTION = "64.233.177.139"
     var ORIGEN: Int = 0

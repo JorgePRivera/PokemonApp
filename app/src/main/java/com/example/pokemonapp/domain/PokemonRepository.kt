@@ -69,10 +69,24 @@ class PokemonRepository {
                     var i = 0
                     for (pokemon in it) {
                         i++
-                        pokemon.photoURL =
-                            "${Constats.URL_PHOTO_NORMAL}$i${Constats.EXT_PNG}"
-                        pokemon.photoUrlShiny =
-                            "${Constats.URL_PHOTO_SHINY}$i${Constats.EXT_PNG}"
+                        if (i < 100) {
+                            if (i < 10) {
+                                pokemon.photoURL =
+                                    "${Constats.URL_PHOTO_NORMAL}00$i${Constats.EXT_PNG}"
+                                pokemon.photoUrlShiny =
+                                    "${Constats.URL_PHOTO_SHINY}00$i${Constats.EXT_PNG}"
+                            } else {
+                                pokemon.photoURL =
+                                    "${Constats.URL_PHOTO_NORMAL}0$i${Constats.EXT_PNG}"
+                                pokemon.photoUrlShiny =
+                                    "${Constats.URL_PHOTO_SHINY}0$i${Constats.EXT_PNG}"
+                            }
+                        } else {
+                            pokemon.photoURL =
+                                "${Constats.URL_PHOTO_NORMAL}$i${Constats.EXT_PNG}"
+                            pokemon.photoUrlShiny =
+                                "${Constats.URL_PHOTO_SHINY}$i${Constats.EXT_PNG}"
+                        }
                         pokemonDAO.insertar(pokemon)
 
                     }
