@@ -54,7 +54,21 @@
                 app:layout_constraintTop_toTopOf="@id/img_photo"
                 tools:text="Pokemon" />
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/btn_favorite"
+                android:layout_width="@dimen/btn_favorite_shape"
+                android:layout_height="@dimen/btn_favorite_shape"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="centerCrop"
+                loadImagefab="@{pokemon.favorite}"
+                android:src="@drawable/ic_favorite_false"
+                app:layout_constraintBottom_toBottomOf="@id/tv_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_name" />
+
+            <!--<androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/btn_favorite"
                 android:layout_width="@dimen/btn_favorite_shape"
                 android:layout_height="@dimen/btn_favorite_shape"
@@ -66,7 +80,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/tv_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tv_name" />
-
+-->
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

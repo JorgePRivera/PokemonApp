@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.pokemonapp.R
@@ -57,7 +58,16 @@ class FavoriteFragment : Fragment(), OnclickListenerFavorite {
 
     private fun setObserver() {
         viewModel.onPokemonFav.observe(viewLifecycleOwner) {
-            setupRecylcerView(it)
+            if (it.isNotEmpty()) {
+                binding.rvContainer.isVisible = true
+                binding.animation.isVisible = false
+                binding.tvListaVacia.isVisible = false
+                setupRecylcerView(it)
+            } else {
+                binding.rvContainer.isVisible = false
+                binding.animation.isVisible = true
+                binding.tvListaVacia.isVisible = true
+            }
         }
     }
 
@@ -68,7 +78,6 @@ class FavoriteFragment : Fragment(), OnclickListenerFavorite {
 
     override fun onClick(pokemonEntity: PokemonEntity) {
         showDialog(pokemonEntity)
-
     }
 
     private fun showDialog(pokemonEntity: PokemonEntity) {

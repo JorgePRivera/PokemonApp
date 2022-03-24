@@ -8,6 +8,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -21,7 +22,7 @@ lateinit var linear: LinearLayoutManager
 lateinit var gridLayoutManager: GridLayoutManager
 
 @BindingAdapter("loadImagefab")
-fun AppCompatImageView.bindingFab(isFavorite: Boolean) {
+fun LottieAnimationView.bindingFab(isFavorite: Boolean) {
     if (isFavorite) {
         this.setImageResource(R.drawable.ic_favorite_true)
     } else {

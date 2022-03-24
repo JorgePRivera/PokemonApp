@@ -9,6 +9,36 @@
         android:background="#E3E0E0"
         tools:context=".ui.favoriteFragment.FavoriteFragment">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation"
+            android:layout_width="@dimen/btn_favorite_shape_"
+            android:layout_height="@dimen/btn_favorite_shape_"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/poke" />
+
+        <TextView
+            android:id="@+id/tv_lista_vacia"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:gravity="center"
+            android:text="@string/empty_list"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/animation"
+            app:layout_constraintStart_toStartOf="@id/animation"
+            app:layout_constraintTop_toBottomOf="@id/animation" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_container"
             recyclerviewadapter="@{adapter}"

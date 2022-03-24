@@ -1,5 +1,7 @@
 package com.example.pokemonapp.ui.homeFragment.adapter
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,10 +10,13 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.core.graphics.alpha
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.example.pokemonapp.R
 import com.example.pokemonapp.data.datasource.database.entities.PokemonEntity
 import com.example.pokemonapp.databinding.ItemListBinding
+import com.example.pokemonapp.sys.util.Constats
 import com.example.pokemonapp.ui.homeFragment.adapter.events.OnPokemonListener
 import java.util.*
 import kotlin.collections.ArrayList
@@ -36,11 +41,12 @@ class PokemonListAdapter(
         fun setListenerFAB(pokemonEntity: PokemonEntity) {
             binding.btnFavorite.setOnClickListener {
                 listener.onClickFAB(pokemonEntity)
-                if (pokemonEntity.isFavorite) {
-                    binding.btnFavorite.setImageResource(R.drawable.ic_favorite_true)
-                } else {
-                    binding.btnFavorite.setImageResource(R.drawable.ic_favorite_false)
-                }
+                setAnimation(
+                    binding.btnFavorite,
+                    if (pokemonEntity.isFavorite) R.drawable.ic_favorite_true
+                    else R.drawable.ic_favorite_false,
+                    R.raw.pokemon
+                )
             }
         }
     }
@@ -100,5 +106,34 @@ class PokemonListAdapter(
                 notifyDataSetChanged()
             }
         }
+    }
+
+    private fun setAnimation(
+        imageView: LottieAnimationView,
+        drawableResource: Int, animation: Int,
+    ) {
+        imageView.setAnimation(animation)
+        imageView.animate()
+            .alpha(Constats.ALFA_ANIMATION)
+            .setDuration(Constats.DURATION_ANIMATION)
+            .setListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(p0: Animator?) {
+                    imageView.playAnimation()
+                }
+
+                override fun onAnimationEnd(p0: Animator?) {
+                    imageView.cancelAnimation()
+                    imageView.alpha = Constats.ALFA_ANIMATION
+                    imageView.setImageResource(drawableResource)
+                }
+
+                override fun onAnimationCancel(p0: Animator?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onAnimationRepeat(p0: Animator?) {
+                    TODO("Not yet implemented")
+                }
+            })
     }
 }

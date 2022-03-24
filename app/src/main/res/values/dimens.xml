@@ -8,4 +8,5 @@
     <dimen name="cardview_default_elevation_">16dp</dimen>
     <dimen name="item_product">128dp</dimen>
     <dimen name="item_pading">4dp</dimen>
+    <dimen name="btn_favorite_shape_">240dp</dimen>
 </resources>
