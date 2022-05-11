@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import com.example.pokemonapp.data.datasource.database.entities.PokemonEntity
 import com.example.pokemonapp.domain.PokemonRepository
 import com.example.pokemonapp.sys.di.component.DaggerRepositoryComponent
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 class HomeViewModel : ViewModel() {
@@ -19,14 +21,18 @@ class HomeViewModel : ViewModel() {
     private var _onError = MutableLiveData<String>()
     val onError: LiveData<String> get() = _onError
 
-    private var _progress = MutableLiveData<Boolean>()
-    val progress: LiveData<Boolean> get() = _progress
+    private var _progress = MutableStateFlow(true)
+    val progress: StateFlow<Boolean> get() = _progress
 
     init {
         DaggerRepositoryComponent.builder()
             .build()
             .inject(this)
     }
+
+
+
+
 
     fun getListPokemon(offset: Int, limit: Int) {
         _progress.value = true

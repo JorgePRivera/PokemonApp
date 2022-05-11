@@ -7,6 +7,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.lifecycleScope
 import com.example.pokemonapp.R
 import com.example.pokemonapp.data.datasource.database.entities.PokemonEntity
 import com.example.pokemonapp.databinding.FragmentHomeBinding
@@ -18,6 +19,8 @@ import com.example.pokemonapp.ui.favoriteFragment.FavoriteFragment
 import com.example.pokemonapp.ui.homeFragment.adapter.PokemonListAdapter
 import com.example.pokemonapp.ui.homeFragment.adapter.events.OnPokemonListener
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -80,8 +83,10 @@ class HomeFragment : Fragment(), OnPokemonListener {
                     .show()
             }
 
-            progress.observe(viewLifecycleOwner) {
-                binding.progress.isVisible = it
+            lifecycleScope.launchWhenStarted {
+                viewModel.progress.collect{
+                    binding.progress.isVisible = it
+                }
             }
         }
     }
