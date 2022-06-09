@@ -21,12 +21,20 @@ class FireBaseWebDS @Inject constructor(
     private val databaseReference: DatabaseReference,
     private val firebaseStorage: StorageReference,
 ) {
-    fun getPokemonFromFireBase(data: Observer<DataSnapshot>, isVisible: Observer<Boolean>) {
+    fun getPokemonFromFireBase(
+        data: Observer<DataSnapshot>,
+        isVisible: Observer<Boolean>,
+        observer: Observer<String>
+    ) {
         isVisible.onChanged(true)
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+                    observer.onChanged("")
                     data.onChanged(snapshot)
+                    isVisible.onChanged(false)
+                } else {
+                    observer.onChanged("Empty list")
                     isVisible.onChanged(false)
                 }
             }
@@ -55,7 +63,7 @@ class FireBaseWebDS @Inject constructor(
                 disableUi.onChanged(false)
             }.addOnCompleteListener {
                 progress_message.onChanged("Complete")
-                if(!it.isSuccessful){
+                if (!it.isSuccessful) {
                     progress_message.onChanged("${it.exception.toString()}")
                 }
             }.addOnSuccessListener {
@@ -79,7 +87,7 @@ class FireBaseWebDS @Inject constructor(
 
     fun insertDataBaseToFiserBase(
         pokemon: PokemonEntityFirebase, observer: Observer<String>,
-        isVisible: Observer<Boolean>,disableUi: Observer<Boolean>
+        isVisible: Observer<Boolean>, disableUi: Observer<Boolean>
     ) {
         isVisible.onChanged(true)
         disableUi.onChanged(false)

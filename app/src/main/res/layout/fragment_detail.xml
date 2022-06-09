@@ -14,7 +14,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_background"
         tools:context=".ui.detailFragment.DetailFragment">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -35,27 +34,15 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_normal"
-            loadimage="@{pokemon.photoURL}"
-            android:layout_width="@dimen/defaul_view"
-            android:layout_height="@dimen/defaul_view"
-            android:src="@mipmap/ic_launcher"
-            android:transitionName="@string/share_element_item_home"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/img_shiny"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_shiny"
             loadimage="@{pokemon.photoUrlShiny}"
             android:layout_width="@dimen/defaul_view"
             android:layout_height="@dimen/defaul_view"
+            android:layout_marginTop="@dimen/default_margin"
             android:src="@mipmap/ic_launcher"
-            app:layout_constraintBottom_toBottomOf="@+id/img_normal"
+            android:transitionName="@string/share_element_item_home"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/img_normal"
-            app:layout_constraintTop_toTopOf="@+id/img_normal" />
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_toolbar" />
 
         <TextView
             android:id="@+id/tv_name"
@@ -65,12 +52,26 @@
             android:layout_marginStart="@dimen/default_margin"
             android:layout_marginTop="@dimen/default_margin"
             android:layout_marginEnd="@dimen/default_margin"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            app:layout_constraintEnd_toEndOf="@id/img_shiny"
+            android:textAppearance="@style/itemLarge"
+            app:layout_constraintEnd_toEndOf="@id/img_normal"
             app:layout_constraintStart_toStartOf="@id/img_normal"
-            app:layout_constraintTop_toBottomOf="@id/img_shiny"
+            app:layout_constraintTop_toBottomOf="@id/img_normal"
             tools:text="Pokemon" />
 
+        <TextView
+            android:id="@+id/tv_url"
+            changeText="@{pokemon.photoUrlShiny}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:maxLines="2"
+            android:textAppearance="@style/itemLarge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            tools:text="https://www.google.com/search?q=pasar+datos+de+un+activity+a+otro+kotlinrlz=1C1GCEV_esMX947MX947sxsrf=ALiCzsbQdxFHsaWH-c7HGgwyK96XWDK7rg%3A1654795317202" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

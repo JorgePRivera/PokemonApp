@@ -4,10 +4,11 @@
     <dimen name="default_margin">16dp</dimen>
     <dimen name="min_margin">8dp</dimen>
     <dimen name="btn_favorite_shape">16dp</dimen>
-    <dimen name="defaul_view">120dp</dimen>
+    <dimen name="defaul_view">200dp</dimen>
     <dimen name="cardview_default_elevation_">16dp</dimen>
     <dimen name="item_product">128dp</dimen>
     <dimen name="item_pading">4dp</dimen>
     <dimen name="btn_favorite_shape_">240dp</dimen>
     <dimen name="item_list_height">88dp</dimen>
+    <dimen name="card_firebase">130dp</dimen>
 </resources>

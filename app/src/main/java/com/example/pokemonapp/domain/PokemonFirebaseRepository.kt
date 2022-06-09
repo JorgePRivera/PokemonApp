@@ -12,8 +12,8 @@ import javax.inject.Singleton
 @Singleton
 class PokemonFirebaseRepository @Inject constructor(private val fireBaseWebDS: FireBaseWebDS) {
 
-    fun getPokemonFromFireBase(data: Observer<DataSnapshot>, isVisible: Observer<Boolean>) {
-        fireBaseWebDS.getPokemonFromFireBase(data, isVisible)
+    fun getPokemonFromFireBase(data: Observer<DataSnapshot>, isVisible: Observer<Boolean>, observer: Observer<String>) {
+        fireBaseWebDS.getPokemonFromFireBase(data, isVisible,observer)
     }
 
     fun insertStoregeToFireBase(

@@ -1,16 +1,17 @@
 package com.example.pokemonapp.ui.homeFragment
 
-import android.os.Build
+import android.app.ActivityOptions
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.transition.TransitionInflater
 import com.example.pokemonapp.R
 import com.example.pokemonapp.data.datasource.database.entities.PokemonEntity
 import com.example.pokemonapp.databinding.FragmentHomeBinding
@@ -106,41 +107,16 @@ class HomeFragment : Fragment(), OnPokemonListener {
     }
 
     override fun onClick(pokemonEntity: PokemonEntity, view: View) {
-        val args = Bundle()
-        args.putInt(getString(R.string.key), pokemonEntity.id)
-        if (frag!!.fragments.size <= 2) {
-            fra = DetailFragment()
-            launchEdidFragment(args, fra, frag!!, view)
-            Constats.setOrigen(Constats.ORIGEN_DETAIL)
-        }
-    }
+        val intento = Intent(activity, DetailFragment::class.java)
+        intento.putExtra(getString(R.string.key), pokemonEntity.id)
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+            requireActivity(),
+            view,
+            getString(R.string.share_element_item_home)
+        )
 
-    private fun launchEdidFragment(
-        args: Bundle? = null,
-        fragment_destino: Fragment,
-        fragmentManager: FragmentManager,
-        view: View
-    ) {
-        if (args != null) fragment_destino.arguments = args
-        val fragmentOrigen = this
+        startActivity(intento, options.toBundle())
 
-        fragmentOrigen.sharedElementEnterTransition =
-            TransitionInflater.from(activity).inflateTransition(R.transition.share_elements);
-        fragmentOrigen.enterTransition =
-            TransitionInflater.from(activity).inflateTransition(android.R.transition.fade);
-
-        fragment_destino.sharedElementEnterTransition =
-            TransitionInflater.from(activity).inflateTransition(R.transition.share_elements);
-        fragment_destino.enterTransition =
-            TransitionInflater.from(activity).inflateTransition(android.R.transition.fade);
-
-
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction
-            .add(R.id.fragmetContainer, fragment_destino)
-            .addToBackStack("Home")
-            .addSharedElement(view, getString(R.string.share_element_item_home))
-            .commit()
     }
 
     private fun launchEdidFragment(

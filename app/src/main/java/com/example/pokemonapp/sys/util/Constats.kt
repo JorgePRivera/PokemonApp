@@ -1,10 +1,12 @@
 package com.example.pokemonapp.sys.util
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.transition.TransitionInflater
 import com.example.pokemonapp.R
 import java.io.IOException
 import java.net.UnknownHostException

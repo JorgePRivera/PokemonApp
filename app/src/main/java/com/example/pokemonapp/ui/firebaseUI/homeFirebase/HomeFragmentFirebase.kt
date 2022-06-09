@@ -51,14 +51,12 @@ class HomeFragmentFirebase : Fragment(), HomeListFirebaseListener {
         with(binding) {
             toolbar.setNavigationOnClickListener {
                 requireActivity().onBackPressed()
-                //Constats.ORIGEN = Constats.ORIGEN_HOME
             }
             fabAddFirebase.setOnClickListener {
                 if (frag!!.fragments.size <= 3) {
                     fra = AddFragmentFireBase()
-                    Constats.showFragment(fra, frag!!)
+                    launchEdidFragment(fra, frag!!)
                     Constats.setOrigen(Constats.ORIGEN_ADDFIREBASE)
-//                    Constats.ORIGEN = Constats.ORIGEN_ADDFIREBASE
                 }
             }
         }
@@ -73,6 +71,16 @@ class HomeFragmentFirebase : Fragment(), HomeListFirebaseListener {
             isvisble.observe(viewLifecycleOwner) {
                 binding.progressFirebase.isVisible = it
             }
+            onList.observe(viewLifecycleOwner){
+                if(it.isNotEmpty()){
+                    binding.animationF.isVisible = true
+                    binding.tvListaVaciaF.isVisible = true
+                    setupRecylcerView(emptyList())
+                }else{
+                    binding.animationF.isVisible = false
+                    binding.tvListaVaciaF.isVisible = false
+                }
+            }
         }
     }
 
@@ -84,7 +92,7 @@ class HomeFragmentFirebase : Fragment(), HomeListFirebaseListener {
         Toast.makeText(context, "${pokemonEntityFirebase.nombre}", Toast.LENGTH_SHORT).show()
     }
 
-    /*private fun launchEdidFragment(
+    private fun launchEdidFragment(
         fragment: Fragment,
         fragmentManager: FragmentManager
     ) {
@@ -92,5 +100,5 @@ class HomeFragmentFirebase : Fragment(), HomeListFirebaseListener {
         fragmentTransaction.replace(R.id.fragmetContainer, fragment)
             .addToBackStack(null)
             .commit()
-    }*/
+    }
 }
