@@ -6,24 +6,18 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.pokemonapp.data.datasource.database.entities.PokemonEntity
 import com.example.pokemonapp.domain.PokemonRepository
-import com.example.pokemonapp.sys.di.component.DaggerRepositoryComponent
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class FavoriteViewModel : ViewModel() {
-    @Inject
-    lateinit var pokemonRepository: PokemonRepository
+@HiltViewModel
+class FavoriteViewModel @Inject constructor(val pokemonRepository: PokemonRepository) :
+    ViewModel() {
 
     private var _onPokemonFav = MutableLiveData<List<PokemonEntity>>()
     val onPokemonFav: LiveData<List<PokemonEntity>> get() = _onPokemonFav
-
-    init {
-        DaggerRepositoryComponent.builder()
-            .build()
-            .inject(this)
-    }
 
     fun updatePokemon(pokemonEntity: PokemonEntity) {
         pokemonRepository.update(pokemonEntity)

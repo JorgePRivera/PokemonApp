@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
             name="adapter"
-            type="com.example.pokemonapp.ui.homeFragment.adapter.PokemonListAdapter" />
+            type="com.example.pokemonapp.ui.firebaseUI.homeFirebase.adapter.HomeListFirebaseAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container_main"
+        android:id="@+id/container_main_firebase"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_background"
-        tools:context=".ui.homeFragment.HomeFragment">
+        tools:context=".ui.firebaseUI.homeFirebase.HomeFragmentFirebase">
 
         <ProgressBar
-            android:id="@+id/progress"
+            android:id="@+id/progress_firebase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
@@ -26,9 +26,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/toolbar_app"
+            android:id="@+id/toolbar_firebase"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,21 +35,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar_"
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title="@string/app_name" />
+                app:navigationIcon="@drawable/ic_back"
+                app:title="@string/firebase" />
         </com.google.android.material.appbar.AppBarLayout>
-
-        <!--<androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="4dp"
-            android:minHeight="?attr/actionBarSize"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_lista"
@@ -60,30 +50,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_app"
-            tools:listitem="@layout/item_list" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar_firebase"
+            tools:listitem="@layout/item_list_firebase" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_favorite"
+            android:id="@+id/fab_add_firebase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_margin"
-            android:src="@drawable/ic_favorite_true"
+            android:src="@drawable/ic_add"
             app:backgroundTint="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:tint="@android:color/white" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_firebase"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_margin"
-            android:src="@drawable/ic_firebase"
-            app:backgroundTint="#ED9C54"
-            app:layout_constraintBottom_toTopOf="@id/fab_favorite"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@android:color/holo_red_dark" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

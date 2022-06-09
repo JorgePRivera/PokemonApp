@@ -1,5 +1,6 @@
 package com.example.pokemonapp.ui.homeFragment
 
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -7,26 +8,25 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.transition.TransitionInflater
 import com.example.pokemonapp.R
 import com.example.pokemonapp.data.datasource.database.entities.PokemonEntity
 import com.example.pokemonapp.databinding.FragmentHomeBinding
-import com.example.pokemonapp.sys.di.component.DaggerViewModelComponent
-import com.example.pokemonapp.sys.di.module.ContextModule
 import com.example.pokemonapp.sys.util.Constats
 import com.example.pokemonapp.ui.detailFragment.DetailFragment
 import com.example.pokemonapp.ui.favoriteFragment.FavoriteFragment
+import com.example.pokemonapp.ui.firebaseUI.homeFirebase.HomeFragmentFirebase
 import com.example.pokemonapp.ui.homeFragment.adapter.PokemonListAdapter
 import com.example.pokemonapp.ui.homeFragment.adapter.events.OnPokemonListener
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment(), OnPokemonListener {
-    @Inject
-    lateinit var viewModel: HomeViewModel
+
+    val viewModel: HomeViewModel by viewModels()
 
     lateinit var binding: FragmentHomeBinding
     private var frag: FragmentManager? = null
@@ -37,11 +37,6 @@ class HomeFragment : Fragment(), OnPokemonListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
-        DaggerViewModelComponent.builder()
-            .contextModule(ContextModule(this))
-            .build()
-            .inject(this)
-
         frag = requireActivity().supportFragmentManager
     }
 
@@ -59,6 +54,8 @@ class HomeFragment : Fragment(), OnPokemonListener {
         viewModel.getListPokemon(0, 898)
         setObserver()
         listeners()
+
+
     }
 
     private fun listeners() {
@@ -66,7 +63,17 @@ class HomeFragment : Fragment(), OnPokemonListener {
             if (frag!!.fragments.size <= 2) {
                 fra = FavoriteFragment()
                 launchEdidFragment(fra, frag!!)
-                Constats.ORIGEN = Constats.ORIGEN_FAVORITES
+                Constats.setOrigen(Constats.ORIGEN_FAVORITES)
+                //Constats.ORIGEN = Constats.ORIGEN_FAVORITES
+            }
+        }
+
+        binding.fabFirebase.setOnClickListener {
+            if (frag!!.fragments.size <= 2) {
+                fra = HomeFragmentFirebase()
+                launchEdidFragment(fra, frag!!)
+                Constats.setOrigen(Constats.ORIGEN_FIREBASE)
+                //Constats.ORIGEN = Constats.ORIGEN_FIREBASE
             }
         }
     }
@@ -84,7 +91,7 @@ class HomeFragment : Fragment(), OnPokemonListener {
             }
 
             lifecycleScope.launchWhenStarted {
-                viewModel.progress.collect{
+                viewModel.progress.collect {
                     binding.progress.isVisible = it
                 }
             }
@@ -98,25 +105,41 @@ class HomeFragment : Fragment(), OnPokemonListener {
         }
     }
 
-    override fun onClick(pokemonEntity: PokemonEntity) {
+    override fun onClick(pokemonEntity: PokemonEntity, view: View) {
         val args = Bundle()
         args.putInt(getString(R.string.key), pokemonEntity.id)
         if (frag!!.fragments.size <= 2) {
             fra = DetailFragment()
-            launchEdidFragment(args, fra, frag!!)
-            Constats.ORIGEN = Constats.ORIGEN_DETAIL
+            launchEdidFragment(args, fra, frag!!, view)
+            Constats.setOrigen(Constats.ORIGEN_DETAIL)
         }
     }
 
     private fun launchEdidFragment(
         args: Bundle? = null,
-        fragment: Fragment,
-        fragmentManager: FragmentManager
+        fragment_destino: Fragment,
+        fragmentManager: FragmentManager,
+        view: View
     ) {
-        if (args != null) fragment.arguments = args
+        if (args != null) fragment_destino.arguments = args
+        val fragmentOrigen = this
+
+        fragmentOrigen.sharedElementEnterTransition =
+            TransitionInflater.from(activity).inflateTransition(R.transition.share_elements);
+        fragmentOrigen.enterTransition =
+            TransitionInflater.from(activity).inflateTransition(android.R.transition.fade);
+
+        fragment_destino.sharedElementEnterTransition =
+            TransitionInflater.from(activity).inflateTransition(R.transition.share_elements);
+        fragment_destino.enterTransition =
+            TransitionInflater.from(activity).inflateTransition(android.R.transition.fade);
+
+
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.fragmetContainer, fragment)
+        fragmentTransaction
+            .add(R.id.fragmetContainer, fragment_destino)
             .addToBackStack("Home")
+            .addSharedElement(view, getString(R.string.share_element_item_home))
             .commit()
     }
 

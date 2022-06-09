@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "827438129584",
+    "firebase_url": "https://json-e0c45-default-rtdb.firebaseio.com",
+    "project_id": "json-e0c45",
+    "storage_bucket": "json-e0c45.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827438129584:android:9afb8d5c2d1cf67851f675",
+        "android_client_info": {
+          "package_name": "com.example.inventario_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827438129584-0f1jobchb1185lorso9bdvksun7bjjcc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOvUgH-7j1EKLW3Oaf9fNNwysG7S0082A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827438129584-0f1jobchb1185lorso9bdvksun7bjjcc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827438129584:android:9ba25bdae0e1216b51f675",
+        "android_client_info": {
+          "package_name": "com.example.myapllication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827438129584-0f1jobchb1185lorso9bdvksun7bjjcc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOvUgH-7j1EKLW3Oaf9fNNwysG7S0082A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827438129584-0f1jobchb1185lorso9bdvksun7bjjcc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827438129584:android:0ea53eed768756d751f675",
+        "android_client_info": {
+          "package_name": "com.example.pokemonapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827438129584-0f1jobchb1185lorso9bdvksun7bjjcc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOvUgH-7j1EKLW3Oaf9fNNwysG7S0082A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827438129584-0f1jobchb1185lorso9bdvksun7bjjcc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

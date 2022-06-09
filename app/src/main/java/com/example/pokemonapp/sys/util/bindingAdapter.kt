@@ -15,6 +15,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.pokemonapp.MainApplication
 import com.example.pokemonapp.R
 import com.example.pokemonapp.ui.favoriteFragment.adapter.FavoriteAdapter
+import com.example.pokemonapp.ui.firebaseUI.homeFirebase.adapter.HomeListFirebaseAdapter
 import com.example.pokemonapp.ui.homeFragment.adapter.PokemonListAdapter
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -75,8 +76,8 @@ fun TextView.bindingText(texto: String) {
 
 @BindingAdapter("recyclerviewadapter")
 fun RecyclerView.bindingRecyclerView(anyAdapter: Any?) {
-    linear = LinearLayoutManager(MainApplication.getContext())
-    gridLayoutManager = GridLayoutManager(MainApplication.getContext(), 3)
+    linear = LinearLayoutManager(context)
+    gridLayoutManager = GridLayoutManager(context, 3)
 
     if (anyAdapter != null) {
         when (anyAdapter) {
@@ -91,6 +92,13 @@ fun RecyclerView.bindingRecyclerView(anyAdapter: Any?) {
                 this.apply {
                     setHasFixedSize(true)
                     layoutManager = gridLayoutManager
+                    adapter = anyAdapter
+                }
+            }
+            is HomeListFirebaseAdapter -> {
+                this.apply {
+                    setHasFixedSize(true)
+                    layoutManager = linear
                     adapter = anyAdapter
                 }
             }

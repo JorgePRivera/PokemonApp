@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="photoUri"
+            type="com.example.pokemonapp.ui.firebaseUI.add.AddViewModelFirebase" />
+    </data>
+    <!-- android:background="#E3E0E0"-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_add_firebase"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_background"
+        tools:context=".ui.firebaseUI.add.AddFragmentFireBase">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/toolbar_firebase_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_add"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:navigationIcon="@drawable/ic_back"
+                app:title="@string/add_firebase" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:endIconMode="clear_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_firebase_add">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/name_of_pokemon" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/view_photo"
+            loadimageCircle="@{photoUri.photoUri}"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="50dp"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@id/til_name"
+            app:layout_constraintTop_toBottomOf="@id/til_name" />
+
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_imgPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_photo"
+
+            app:layout_constraintBottom_toBottomOf="@id/view_photo"
+            app:layout_constraintEnd_toStartOf="@id/view_photo"
+            app:layout_constraintTop_toTopOf="@id/view_photo" />
+
+        <TextView
+            android:id="@+id/photo_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:text="Photo:"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            app:layout_constraintBottom_toBottomOf="@id/btn_imgPhoto"
+            app:layout_constraintEnd_toStartOf="@id/btn_imgPhoto"
+            app:layout_constraintTop_toTopOf="@id/btn_imgPhoto" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/view_photo_shiny"
+            loadimageCircle="@{photoUri.photoUriShiny}"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="50dp"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/view_photo"
+            app:layout_constraintTop_toBottomOf="@id/view_photo" />
+
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_imgPhoto_shiny"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_photo"
+            app:layout_constraintBottom_toBottomOf="@id/view_photo_shiny"
+            app:layout_constraintEnd_toStartOf="@id/view_photo_shiny"
+            app:layout_constraintTop_toTopOf="@id/view_photo_shiny" />
+
+        <TextView
+            android:id="@+id/photo_shiny"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:text="Photo Shiny:"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            app:layout_constraintBottom_toBottomOf="@id/btn_imgPhoto_shiny"
+            app:layout_constraintEnd_toStartOf="@id/btn_imgPhoto_shiny"
+            app:layout_constraintTop_toTopOf="@id/btn_imgPhoto_shiny" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_guardar"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SAVE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_photo_shiny" />
+
+
+        <TextView
+            android:id="@+id/titleMensaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/upload_data"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:textColor="@color/color_primary_variant"
+            app:layout_constraintEnd_toEndOf="@id/btn_imgPhoto_shiny"
+            app:layout_constraintStart_toStartOf="@id/photo_shiny"
+            app:layout_constraintTop_toBottomOf="@id/photo_shiny" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleMensaje" />
+
+        <ProgressBar
+            android:id="@+id/progressBar_insert"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="50dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/titleMensaje" />
+
+        <TextView
+            android:id="@+id/titleProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            app:layout_constraintStart_toStartOf="@id/progressBar"
+            app:layout_constraintEnd_toEndOf="@id/progressBar"
+            app:layout_constraintTop_toBottomOf="@id/progressBar"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -2,6 +2,7 @@ package com.example.pokemonapp.ui.mainActivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.pokemonapp.R
@@ -9,7 +10,9 @@ import com.example.pokemonapp.databinding.ActivityMainBinding
 import com.example.pokemonapp.sys.util.Constats
 import com.example.pokemonapp.ui.homeFragment.HomeFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     private lateinit var fraM: FragmentManager
@@ -23,29 +26,31 @@ class MainActivity : AppCompatActivity() {
         fraM = supportFragmentManager
         if (fraM.fragments.size < 1) {
             fra = HomeFragment()
-            showFragment(fra, fraM)
+            Constats.showFragment(fra, fraM)
         }
     }
 
-    private fun showFragment(fragment: Fragment, fragmentManager: FragmentManager) {
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragmetContainer, fragment)
-            .commit()
-    }
-
     override fun onBackPressed() {
-        when (Constats.ORIGEN) {
+        when (Constats.getOrigen()) {
             Constats.ORIGEN_HOME -> {
                 showDialog()
             }
             Constats.ORIGEN_FAVORITES -> {
                 fra = HomeFragment()
-                showFragment(fra, fraM)
-                Constats.ORIGEN = Constats.ORIGEN_HOME
+                Constats.showFragment(fra, fraM)
+                Constats.setOrigen(Constats.ORIGEN_HOME)
             }
-            Constats.ORIGEN_DETAIL -> {
-                Constats.ORIGEN = Constats.ORIGEN_HOME
+            Constats.ORIGEN_DETAIL,
+            Constats.ORIGEN_FIREBASE -> {
+                Constats.setOrigen(Constats.ORIGEN_HOME)
                 super.onBackPressed()
+            }
+            Constats.ORIGEN_ADDFIREBASE -> {
+                Constats.setOrigen(Constats.ORIGEN_FIREBASE)
+                super.onBackPressed()
+            }
+            Constats.IN_PROGRESS -> {
+                Toast.makeText(this, "Se esta ejecutando una operación", Toast.LENGTH_SHORT).show()
             }
             else -> {
                 showDialog()

@@ -7,20 +7,20 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.viewModels
 import com.example.pokemonapp.R
 import com.example.pokemonapp.data.datasource.database.entities.PokemonEntity
 import com.example.pokemonapp.databinding.FragmentFavoriteBinding
-import com.example.pokemonapp.sys.di.component.DaggerViewModelComponent
-import com.example.pokemonapp.sys.di.module.ContextModule
 import com.example.pokemonapp.sys.util.Constats
 import com.example.pokemonapp.ui.favoriteFragment.adapter.FavoriteAdapter
 import com.example.pokemonapp.ui.favoriteFragment.adapter.listeners.OnclickListenerFavorite
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavoriteFragment : Fragment(), OnclickListenerFavorite {
-    @Inject
-    lateinit var viewModel: FavoriteViewModel
+
+    private val viewModel: FavoriteViewModel by viewModels()
 
     lateinit var binding: FragmentFavoriteBinding
 
@@ -31,10 +31,6 @@ class FavoriteFragment : Fragment(), OnclickListenerFavorite {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DaggerViewModelComponent.builder()
-            .contextModule(ContextModule(this))
-            .build()
-            .inject(this)
         frag = requireActivity().supportFragmentManager
     }
 
@@ -52,7 +48,7 @@ class FavoriteFragment : Fragment(), OnclickListenerFavorite {
         setObserver()
         binding.toolbar.setNavigationOnClickListener {
             requireActivity().onBackPressed()
-            Constats.ORIGEN = Constats.ORIGEN_HOME
+           // Constats.ORIGEN = Constats.ORIGEN_HOME
         }
     }
 

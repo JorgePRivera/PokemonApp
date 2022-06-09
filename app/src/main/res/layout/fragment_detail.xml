@@ -14,24 +14,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#E3E0E0"
+        android:background="@color/color_background"
         tools:context=".ui.detailFragment.DetailFragment">
-
-        <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_return"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_back"
-        app:backgroundTint="@color/purple_700"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_toolbar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="#AF9EC7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -50,6 +39,7 @@
             android:layout_width="@dimen/defaul_view"
             android:layout_height="@dimen/defaul_view"
             android:src="@mipmap/ic_launcher"
+            android:transitionName="@string/share_element_item_home"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/img_shiny"
             app:layout_constraintStart_toStartOf="parent"

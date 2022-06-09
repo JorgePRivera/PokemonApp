@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#E3E0E0"
+        android:background="@color/color_background"
         tools:context=".ui.favoriteFragment.FavoriteFragment">
 
         <com.airbnb.lottie.LottieAnimationView
@@ -55,7 +55,6 @@
             android:id="@+id/app_toolbar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="#AF9EC7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">

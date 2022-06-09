@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="itemLarge" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    <style name="itemMedium" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:maxLines">2</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+</resources>

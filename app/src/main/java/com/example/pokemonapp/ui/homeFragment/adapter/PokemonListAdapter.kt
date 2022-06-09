@@ -18,6 +18,7 @@ import com.example.pokemonapp.data.datasource.database.entities.PokemonEntity
 import com.example.pokemonapp.databinding.ItemListBinding
 import com.example.pokemonapp.sys.util.Constats
 import com.example.pokemonapp.ui.homeFragment.adapter.events.OnPokemonListener
+import com.google.android.material.button.MaterialButton
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -32,9 +33,9 @@ class PokemonListAdapter(
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemListBinding.bind(view)
 
-        fun setListener(pokemonEntity: PokemonEntity) {
+        fun setListener(pokemonEntity: PokemonEntity, img: View) {
             binding.container.setOnClickListener {
-                listener.onClick(pokemonEntity)
+                listener.onClick(pokemonEntity, img)
             }
         }
 
@@ -61,7 +62,7 @@ class PokemonListAdapter(
         val pokemon = listaPokemon[position]
 
         with(viewHolder) {
-            setListener(pokemon)
+            setListener(pokemon, binding.imgPhotoN)
             setListenerFAB(pokemon)
             binding.pokemon = pokemon
             setAnimation(viewHolder.itemView, position)
@@ -118,6 +119,7 @@ class PokemonListAdapter(
             .setDuration(Constats.DURATION_ANIMATION)
             .setListener(object : Animator.AnimatorListener {
                 override fun onAnimationStart(p0: Animator?) {
+                    imageView.isEnabled = false
                     imageView.playAnimation()
                 }
 
@@ -125,6 +127,7 @@ class PokemonListAdapter(
                     imageView.cancelAnimation()
                     imageView.alpha = Constats.ALFA_ANIMATION
                     imageView.setImageResource(drawableResource)
+                    imageView.isEnabled = true
                 }
 
                 override fun onAnimationCancel(p0: Animator?) {

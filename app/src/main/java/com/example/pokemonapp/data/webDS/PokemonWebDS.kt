@@ -4,7 +4,6 @@ import androidx.lifecycle.Observer
 import com.example.pokemonapp.data.datasource.database.entities.PokemonEntity
 import com.example.pokemonapp.data.datasource.web.WebServiceContract
 import com.example.pokemonapp.data.datasource.web.response.PokemonResponse
-import com.example.pokemonapp.sys.di.component.DaggerFrameworkComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -12,17 +11,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class PokemonWebDS {
-    @Inject
-    lateinit var webServiceContract: WebServiceContract
+@Singleton
+class PokemonWebDS @Inject constructor(private val webServiceContract: WebServiceContract) {
     lateinit var call: Call<PokemonResponse>
-
-    init {
-        DaggerFrameworkComponent.builder()
-            .build()
-            .inject(this)
-    }
 
     fun requestPokemonApi(
         observer: Observer<List<PokemonEntity>>,

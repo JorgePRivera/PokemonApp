@@ -1,33 +1,22 @@
 package com.example.pokemonapp.domain
 
 import androidx.lifecycle.Observer
-import com.example.pokemonapp.MainApplication
 import com.example.pokemonapp.data.datasource.database.dao.PokemonDAO
 import com.example.pokemonapp.data.datasource.database.entities.PokemonEntity
 import com.example.pokemonapp.data.webDS.PokemonWebDS
-import com.example.pokemonapp.sys.di.component.DaggerDataSourceComponent
-import com.example.pokemonapp.sys.di.module.ContextModule
 import com.example.pokemonapp.sys.util.Constats
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class PokemonRepository {
-    @Inject
-    lateinit var pokemonWebDS: PokemonWebDS
-
-    @Inject
-    lateinit var pokemonDAO: PokemonDAO
-
-    init {
-        DaggerDataSourceComponent.builder()
-            .contextModule(ContextModule(MainApplication.getContext()))
-            .build()
-            .inject(this)
-    }
-
+@Singleton
+class PokemonRepository @Inject constructor(
+    private val pokemonWebDS: PokemonWebDS,
+    private val pokemonDAO: PokemonDAO
+) {
     fun getFavorite(observer: Observer<List<PokemonEntity>>) {
         obtenerFavorite(observer)
     }

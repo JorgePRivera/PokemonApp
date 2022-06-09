@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
+    <!--<color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#AF9EC7</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="divider">#7A7A7A</color>
+    <color name="divider">#7A7A7A</color>-->
+
+    <!--Material themes color-->
+    <color name="color_primary">#ffa726</color>
+    <color name="color_primary_variant">#c77800</color>
+    <color name="color_secondary">#4e342e</color>
+    <color name="color_secondary_variant">#260e04</color>
+
+    <color name="color_background">#eeeeee</color>
+    <color name="color_surface">#ffffff</color>
+    <color name="color_error">#a30000</color>
+
+    <color name="color_on_primary">#000000</color>
+    <color name="color_on_secondary">#ffffff</color>
+    <color name="color_on_background">#000000</color>
+    <color name="color_on_surface">#000000</color>
+    <color name="color_on_error">#ffffff</color>
+
+    <color name="color_divider">#1E000000</color>
+
 </resources>

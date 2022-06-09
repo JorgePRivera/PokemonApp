@@ -12,4 +12,9 @@
     <string name="dialog_exit_title">Exit ?</string>
     <string name="exit">Do you want to exit the application?</string>
     <string name="empty_list">Empty list</string>
+    <string name="firebase">FireBase</string>
+    <string name="add_firebase">Add to FireBase</string>
+    <string name="name_of_pokemon">Name of pokemon</string>
+    <string name="upload_data">Upload data...</string>
+    <string name="share_element_item_home">itemHome</string>
 </resources>
