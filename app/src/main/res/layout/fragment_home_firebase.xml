@@ -40,7 +40,7 @@
             android:layout_marginTop="@dimen/default_margin"
             android:gravity="center"
             android:text="@string/empty_list"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textAppearance="@style/TextAppearance.MyTheme.Headline6"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@id/animation_f"
             app:layout_constraintStart_toStartOf="@id/animation_f"

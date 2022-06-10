@@ -9,7 +9,6 @@
             name="photoUri"
             type="com.example.pokemonapp.ui.firebaseUI.add.AddViewModelFirebase" />
     </data>
-    <!-- android:background="#E3E0E0"-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_add_firebase"
         android:layout_width="match_parent"
@@ -65,11 +64,11 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_imgPhoto"
+            android:background="?attr/selectableItemBackground"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
             android:src="@drawable/ic_photo"
-
             app:layout_constraintBottom_toBottomOf="@id/view_photo"
             app:layout_constraintEnd_toStartOf="@id/view_photo"
             app:layout_constraintTop_toTopOf="@id/view_photo" />
@@ -80,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:text="Photo:"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textAppearance="@style/TextAppearance.MyTheme.Headline6"
             app:layout_constraintBottom_toBottomOf="@id/btn_imgPhoto"
             app:layout_constraintEnd_toStartOf="@id/btn_imgPhoto"
             app:layout_constraintTop_toTopOf="@id/btn_imgPhoto" />
@@ -102,6 +101,7 @@
             android:id="@+id/btn_imgPhoto_shiny"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
             android:layout_marginEnd="15dp"
             android:src="@drawable/ic_photo"
             app:layout_constraintBottom_toBottomOf="@id/view_photo_shiny"
@@ -114,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:text="Photo Shiny:"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textAppearance="@style/TextAppearance.MyTheme.Headline6"
             app:layout_constraintBottom_toBottomOf="@id/btn_imgPhoto_shiny"
             app:layout_constraintEnd_toStartOf="@id/btn_imgPhoto_shiny"
             app:layout_constraintTop_toTopOf="@id/btn_imgPhoto_shiny" />
@@ -137,7 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:text="@string/upload_data"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:textAppearance="@style/TextAppearance.MyTheme.Body1"
             android:textColor="@color/color_primary_variant"
             app:layout_constraintEnd_toEndOf="@id/btn_imgPhoto_shiny"
             app:layout_constraintStart_toStartOf="@id/photo_shiny"
@@ -167,7 +167,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:textAppearance="@style/TextAppearance.MyTheme.Body1"
             app:layout_constraintStart_toStartOf="@id/progressBar"
             app:layout_constraintEnd_toEndOf="@id/progressBar"
             app:layout_constraintTop_toBottomOf="@id/progressBar"/>

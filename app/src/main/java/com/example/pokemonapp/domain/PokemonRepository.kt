@@ -3,6 +3,7 @@ package com.example.pokemonapp.domain
 import androidx.lifecycle.Observer
 import com.example.pokemonapp.data.datasource.database.dao.PokemonDAO
 import com.example.pokemonapp.data.datasource.database.entities.PokemonEntity
+import com.example.pokemonapp.data.localDS.MemoryDS
 import com.example.pokemonapp.data.webDS.PokemonWebDS
 import com.example.pokemonapp.sys.util.Constats
 import kotlinx.coroutines.CoroutineScope
@@ -15,22 +16,22 @@ import javax.inject.Singleton
 @Singleton
 class PokemonRepository @Inject constructor(
     private val pokemonWebDS: PokemonWebDS,
-    private val pokemonDAO: PokemonDAO
+    private val memoryDS: MemoryDS
 ) {
     fun getFavorite(observer: Observer<List<PokemonEntity>>) {
-        obtenerFavorite(observer)
+        memoryDS.getFavorite(observer)
     }
 
     fun getFronId(observer: Observer<PokemonEntity>, id: Int) {
-        getPokemonFromId(observer, id)
+        memoryDS.getPokemonFromId(observer, id)
     }
 
     fun getPokemonLocale(observer: Observer<List<PokemonEntity>>) {
-        getDataLocale(observer)
+        memoryDS.getDataLocale(observer)
     }
 
     fun update(pokemonEntity: PokemonEntity) {
-        updatePokemon(pokemonEntity)
+        memoryDS.updatePokemon(pokemonEntity)
     }
 
     fun getPokemon(
@@ -42,7 +43,7 @@ class PokemonRepository @Inject constructor(
         if (Constats.isConection()) {
             pokemonWebDS.requestPokemonApi(buildObserver(observer, error), error, offset, limit)
         } else {
-            getDataLocale(observer)
+            memoryDS.getDataLocale(observer)
         }
     }
 
@@ -76,41 +77,11 @@ class PokemonRepository @Inject constructor(
                             pokemon.photoUrlShiny =
                                 "${Constats.URL_PHOTO_SHINY}$i${Constats.EXT_PNG}"
                         }
-                        pokemonDAO.insertar(pokemon)
-
+                        memoryDS.insertPokemon(pokemon)
                     }
-                    getDataLocale(observer)
+                    memoryDS.getDataLocale(observer)
                 }
             }
-        }
-    }
-
-    private fun getDataLocale(observer: Observer<List<PokemonEntity>>) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val pokemon = pokemonDAO.getAll()
-            withContext(Dispatchers.Main) {
-                observer.onChanged(pokemon)
-            }
-        }
-    }
-
-    private fun updatePokemon(pokemonEntity: PokemonEntity) {
-        CoroutineScope(Dispatchers.IO).launch {
-            pokemonDAO.update(pokemonEntity)
-        }
-    }
-
-    private fun getPokemonFromId(observer: Observer<PokemonEntity>, id: Int) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val pokemonEntity = pokemonDAO.getPokemonFromId(id)
-            observer.onChanged(pokemonEntity)
-        }
-    }
-
-    private fun obtenerFavorite(observer: Observer<List<PokemonEntity>>) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val movieEntity = pokemonDAO.getFavorite(true)
-            observer.onChanged(movieEntity)
         }
     }
 }

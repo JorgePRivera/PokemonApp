@@ -55,14 +55,15 @@ class FavoriteFragment : Fragment(), OnclickListenerFavorite {
     private fun setObserver() {
         viewModel.onPokemonFav.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
-                binding.rvContainer.isVisible = true
+                //binding.rvContainer.isVisible = true
                 binding.animation.isVisible = false
                 binding.tvListaVacia.isVisible = false
                 setupRecylcerView(it)
             } else {
-                binding.rvContainer.isVisible = false
+                //binding.rvContainer.isVisible = false
                 binding.animation.isVisible = true
                 binding.tvListaVacia.isVisible = true
+                setupRecylcerView(emptyList())
             }
         }
     }
