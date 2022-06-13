@@ -55,32 +55,30 @@ class PokemonRepository @Inject constructor(
             if (it.isEmpty()) {
                 error.onChanged("Lista vacia!")
             } else {
-                CoroutineScope(Dispatchers.IO).launch {
-                    var i = 0
-                    for (pokemon in it) {
-                        i++
-                        if (i < 100) {
-                            if (i < 10) {
-                                pokemon.photoURL =
-                                    "${Constats.URL_PHOTO_NORMAL}00$i${Constats.EXT_PNG}"
-                                pokemon.photoUrlShiny =
-                                    "${Constats.URL_PHOTO_SHINY}00$i${Constats.EXT_PNG}"
-                            } else {
-                                pokemon.photoURL =
-                                    "${Constats.URL_PHOTO_NORMAL}0$i${Constats.EXT_PNG}"
-                                pokemon.photoUrlShiny =
-                                    "${Constats.URL_PHOTO_SHINY}0$i${Constats.EXT_PNG}"
-                            }
+                var i = 0
+                for (pokemon in it) {
+                    i++
+                    if (i < 100) {
+                        if (i < 10) {
+                            pokemon.photoURL =
+                                "${Constats.URL_PHOTO_NORMAL}00$i${Constats.EXT_PNG}"
+                            pokemon.photoUrlShiny =
+                                "${Constats.URL_PHOTO_SHINY}00$i${Constats.EXT_PNG}"
                         } else {
                             pokemon.photoURL =
-                                "${Constats.URL_PHOTO_NORMAL}$i${Constats.EXT_PNG}"
+                                "${Constats.URL_PHOTO_NORMAL}0$i${Constats.EXT_PNG}"
                             pokemon.photoUrlShiny =
-                                "${Constats.URL_PHOTO_SHINY}$i${Constats.EXT_PNG}"
+                                "${Constats.URL_PHOTO_SHINY}0$i${Constats.EXT_PNG}"
                         }
-                        memoryDS.insertPokemon(pokemon)
+                    } else {
+                        pokemon.photoURL =
+                            "${Constats.URL_PHOTO_NORMAL}$i${Constats.EXT_PNG}"
+                        pokemon.photoUrlShiny =
+                            "${Constats.URL_PHOTO_SHINY}$i${Constats.EXT_PNG}"
                     }
-                    memoryDS.getDataLocale(observer)
+                    memoryDS.insertPokemon(pokemon)
                 }
+                memoryDS.getDataLocale(observer)
             }
         }
     }

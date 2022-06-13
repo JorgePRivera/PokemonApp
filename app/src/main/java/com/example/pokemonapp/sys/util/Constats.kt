@@ -19,11 +19,6 @@ object Constats {
 
     const val PATH_FIREBASE_BD = "pokemonFirebaseBD"
     const val PATH_FIREBASE_STORAGE = "pokemonFirebaseStorage"
-
-    /* const val URL_PHOTO_NORMAL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
-    const val URL_PHOTO_SHINY ="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/"
-    */
-
     const val TABLE_NAME = "Pokemon"
     const val DATABASE_NAME = "Pokemon_database"
     private const val URL_CONECTION = "64.233.177.139"
@@ -48,7 +43,13 @@ object Constats {
     }
 
     fun showFragment(fragment: Fragment, fragmentManager: FragmentManager) {
-        val fragmentTransaction = fragmentManager.beginTransaction()
+        val fragmentTransaction = fragmentManager.beginTransaction().setCustomAnimations(
+            com.airbnb.lottie.R.anim.abc_fade_in,
+            com.airbnb.lottie.R.anim.abc_fade_out,
+            com.airbnb.lottie.R.anim.abc_fade_in,
+            com.airbnb.lottie.R.anim.abc_fade_out
+        )
+
         fragmentTransaction.replace(R.id.fragmetContainer, fragment)
             .commit()
     }

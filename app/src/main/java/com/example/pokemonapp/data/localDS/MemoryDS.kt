@@ -12,8 +12,10 @@ import javax.inject.Singleton
 
 @Singleton
 class MemoryDS @Inject constructor(private val pokemonDAO: PokemonDAO) {
-    fun insertPokemon(pokemon: PokemonEntity){
-        pokemonDAO.insertar(pokemon)
+    fun insertPokemon(pokemon: PokemonEntity) {
+        CoroutineScope(Dispatchers.IO).launch {
+            pokemonDAO.insertar(pokemon)
+        }
     }
 
     fun getDataLocale(observer: Observer<List<PokemonEntity>>) {

@@ -43,6 +43,7 @@ class HomeFragmentFirebase : Fragment(), HomeListFirebaseListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getListaToFirebase()
+        setupRecylcerView(emptyList())
         setObserver()
         setListener()
     }
@@ -71,12 +72,12 @@ class HomeFragmentFirebase : Fragment(), HomeListFirebaseListener {
             isvisble.observe(viewLifecycleOwner) {
                 binding.progressFirebase.isVisible = it
             }
-            onList.observe(viewLifecycleOwner){
-                if(it.isNotEmpty()){
+            onList.observe(viewLifecycleOwner) {
+                if (it.isNotEmpty()) {
                     binding.animationF.isVisible = true
                     binding.tvListaVaciaF.isVisible = true
                     setupRecylcerView(emptyList())
-                }else{
+                } else {
                     binding.animationF.isVisible = false
                     binding.tvListaVaciaF.isVisible = false
                 }

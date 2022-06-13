@@ -123,7 +123,15 @@ class HomeFragment : Fragment(), OnPokemonListener {
         fragment: Fragment,
         fragmentManager: FragmentManager
     ) {
-        val fragmentTransaction = fragmentManager.beginTransaction()
+        val fragmentTransaction = fragmentManager.beginTransaction().setCustomAnimations(
+            com.airbnb.lottie.R.anim.abc_fade_in,
+            com.airbnb.lottie.R.anim.abc_fade_out,
+            com.airbnb.lottie.R.anim.abc_fade_in,
+            com.airbnb.lottie.R.anim.abc_fade_out
+        )
+
+
+
         fragmentTransaction.add(R.id.fragmetContainer, fragment)
             .addToBackStack(null)
             .commit()
