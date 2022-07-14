@@ -90,7 +90,7 @@ class HomeFragmentFirebase : Fragment(), HomeListFirebaseListener {
     }
 
     override fun onClick(pokemonEntityFirebase: PokemonEntityFirebase) {
-        Toast.makeText(context, "${pokemonEntityFirebase.nombre}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, pokemonEntityFirebase.nombre, Toast.LENGTH_SHORT).show()
     }
 
     private fun launchEdidFragment(

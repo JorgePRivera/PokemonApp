@@ -14,13 +14,13 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(val pokemonRepository: PokemonRepository) : ViewModel() {
 
-    private var _listpokemon = MutableLiveData<List<PokemonEntity>>()
+    private val _listpokemon = MutableLiveData<List<PokemonEntity>>()
     val listpokemon: LiveData<List<PokemonEntity>> get() = _listpokemon
 
-    private var _onError = MutableLiveData<String>()
+    private val _onError = MutableLiveData<String>()
     val onError: LiveData<String> get() = _onError
 
-    private var _progress = MutableStateFlow(true)
+    private val _progress = MutableStateFlow(true)
     val progress: StateFlow<Boolean> get() = _progress
 
     fun getListPokemon(offset: Int, limit: Int) {

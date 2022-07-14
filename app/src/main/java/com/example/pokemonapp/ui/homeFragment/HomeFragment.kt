@@ -65,7 +65,6 @@ class HomeFragment : Fragment(), OnPokemonListener {
                 fra = FavoriteFragment()
                 launchEdidFragment(fra, frag!!)
                 Constats.setOrigen(Constats.ORIGEN_FAVORITES)
-                //Constats.ORIGEN = Constats.ORIGEN_FAVORITES
             }
         }
 
@@ -74,7 +73,6 @@ class HomeFragment : Fragment(), OnPokemonListener {
                 fra = HomeFragmentFirebase()
                 launchEdidFragment(fra, frag!!)
                 Constats.setOrigen(Constats.ORIGEN_FIREBASE)
-                //Constats.ORIGEN = Constats.ORIGEN_FIREBASE
             }
         }
     }
@@ -152,9 +150,7 @@ class HomeFragment : Fragment(), OnPokemonListener {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (adapter != null) {
-                    adapter.filter.filter(newText)
-                }
+                adapter.filter.filter(newText)
                 return true
             }
         })

@@ -81,11 +81,12 @@ fun RecyclerView.bindingRecyclerView(anyAdapter: Any?) {
 
     if (anyAdapter != null) {
         when (anyAdapter) {
-            is PokemonListAdapter -> {
+            is PokemonListAdapter,
+            is HomeListFirebaseAdapter -> {
                 this.apply {
                     setHasFixedSize(true)
                     layoutManager = linear
-                    adapter = anyAdapter
+                    adapter = anyAdapter as RecyclerView.Adapter<*>?
                 }
             }
             is FavoriteAdapter -> {
@@ -95,13 +96,13 @@ fun RecyclerView.bindingRecyclerView(anyAdapter: Any?) {
                     adapter = anyAdapter
                 }
             }
-            is HomeListFirebaseAdapter -> {
+           /* is HomeListFirebaseAdapter -> {
                 this.apply {
                     setHasFixedSize(true)
                     layoutManager = linear
                     adapter = anyAdapter
                 }
-            }
+            }*/
         }
     }
 }

@@ -139,8 +139,8 @@ class AddFragmentFireBase : Fragment() {
 
             isVisibleProgress.observe(viewLifecycleOwner) {
                 //binding.containerAddFirebase.postDelayed({
-                    binding.progressBarInsert.isVisible = it
-                    //binding.titleMensaje.isVisible = it
+                binding.progressBarInsert.isVisible = it
+                //binding.titleMensaje.isVisible = it
                 //}, 5000)
             }
 
@@ -154,26 +154,28 @@ class AddFragmentFireBase : Fragment() {
                     binding.progressBar.progress = it.toInt()
                     binding.titleMensaje.text = progress_message
                 } else {
-                    Toast.makeText(context, "No tienes conecxion a internet", Toast.LENGTH_SHORT)
+                    Toast.makeText(context, "No tienes conexion a internet", Toast.LENGTH_SHORT)
                         .show()
                 }
             }
 
-            disableUI.observe(viewLifecycleOwner){
-                with(binding){
+            disableUI.observe(viewLifecycleOwner) {
+                with(binding) {
                     btnImgPhoto.isEnabled = it
                     btnImgPhotoShiny.isEnabled = it
                     btnGuardar.isEnabled = it
                     tvName.isEnabled = it
-                    if (!it){
-                        //Constats.ORIGEN = Constats.IN_PROGRESS
-                        Constats.setOrigen( Constats.IN_PROGRESS)
+                    if (!it) {
+                        Constats.setOrigen(Constats.IN_PROGRESS)
                         toolbarAdd.setNavigationOnClickListener {
-                            Toast.makeText(context, "Se esta ejecutando una operación",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                context,
+                                "Se esta ejecutando una operación",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
-                    }else{
-                        //Constats.ORIGEN = Constats.ORIGEN_ADDFIREBASE
-                            Constats.setOrigen(Constats.ORIGEN_ADDFIREBASE)
+                    } else {
+                        Constats.setOrigen(Constats.ORIGEN_ADDFIREBASE)
                         toolbarAdd.setNavigationOnClickListener {
                             requireActivity().onBackPressed()
                         }
